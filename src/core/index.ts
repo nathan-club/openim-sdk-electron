@@ -134,12 +134,6 @@ class OpenIMSDK
       'void',
       ['listenerCallback *']
     );
-    this.libOpenIMSDK.set_batch_msg_listener = this.lib.func(
-      '__stdcall',
-      'set_batch_msg_listener',
-      'void',
-      ['listenerCallback *']
-    );
     this.libOpenIMSDK.set_user_listener = this.lib.func(
       '__stdcall',
       'set_user_listener',
@@ -1088,7 +1082,6 @@ class OpenIMSDK
     this.libOpenIMSDK.set_group_listener(this.listenerCallback);
     this.libOpenIMSDK.set_conversation_listener(this.listenerCallback);
     this.libOpenIMSDK.set_advanced_msg_listener(this.listenerCallback);
-    this.libOpenIMSDK.set_batch_msg_listener(this.listenerCallback);
     this.libOpenIMSDK.set_custom_business_listener(this.listenerCallback);
     if (this.enterprise || this.basertc) {
       this.libOpenIMSDK.set_signaling_listener(this.listenerCallback);

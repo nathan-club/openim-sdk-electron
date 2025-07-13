@@ -11,7 +11,6 @@ declare module 'libOpenIMSDK' {
     set_group_listener(cCallback: CB_I_S): void;
     set_conversation_listener(cCallback: CB_I_S): void;
     set_advanced_msg_listener(cCallback: CB_I_S): void;
-    set_batch_msg_listener(cCallback: CB_I_S): void;
     set_user_listener(cCallback: CB_I_S): void;
     set_friend_listener(cCallback: CB_I_S): void;
     set_custom_business_listener(cCallback: CB_I_S): void;
