@@ -13,12 +13,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
+          registry-url: 'https://npm.pkg.github.com/'
+          scope: '@nathan-club'
 
       - name: Install dependencies
         run: npm install
@@ -26,15 +28,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Authenticate with npm registry
-        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+      # - name: Authenticate with npm registry
+      #   run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
 
-      - name: Config npm
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Config npm
+      #   run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish
+      # - name: Publish
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: npm publish -r --access public --no-git-checks
+      - name: Publish to GitHub Packages
+        run: npm publish
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish -r --access public --no-git-checks
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
